@@ -7,7 +7,6 @@ cmake -G "NMake Makefiles" ^
     -DBUILD_SHARED_LIBS=ON ^
     -DBUILD_EXAMPLES=OFF ^
     -DBUILD_TESTING=OFF ^
-    -DMINIGLOG=ON ^
     ..
 if errorlevel 1 exit 1
 
