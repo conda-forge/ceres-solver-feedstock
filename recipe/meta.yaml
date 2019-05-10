@@ -44,6 +44,8 @@ test:
     - if not exist %PREFIX%\\Library\\include\\ceres\\ceres.h exit 1  # [win]
     - if not exist %PREFIX%\\Library\\lib\\ceres.lib exit 1  # [win]
     - if not exist %PREFIX%\\Library\\bin\\ceres.dll exit 1  # [win]
+    - python -c "import ctypes; ctypes.cdll[r'${PREFIX}/lib/libceres${SHLIB_EXT}']"  # [unix]
+    - python -c "import ctypes; ctypes.cdll[r'%PREFIX%\\Library\\bin\\ceres.dll']"  # [win]
 
 about:
   home: http://ceres-solver.org
