@@ -21,7 +21,7 @@ requirements:
     - {{ compiler('cxx') }}
 
   host:
-    - glog
+    - glog  # [unix]
     - gflags
     - libblas
     - libcblas
@@ -31,7 +31,7 @@ requirements:
     - eigen
 
   run:
-    - glog
+    - glog  # [unix]
     - gflags
     - suitesparse  # [unix]
     - tbb
