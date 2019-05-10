@@ -9,7 +9,7 @@ source:
   sha256: 4744005fc3b902fed886ea418df70690caa8e2ff6b5a90f3dd88a3d291ef8e8e
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and vc<14]
   run_exports: 
     - {{ pin_subpackage('ceres-solver', max_pin='x.x') }}
@@ -21,19 +21,19 @@ requirements:
     - {{ compiler('cxx') }}
 
   host:
-    - glog
+    - glog  # [unix]
     - gflags
     - libblas
     - libcblas
     - liblapack
-    - suitesparse
+    - suitesparse  # [unix]
     - tbb
     - eigen
 
   run:
-    - glog
+    - glog  # [unix]
     - gflags
-    - suitesparse
+    - suitesparse  # [unix]
     - tbb
     - eigen
 
