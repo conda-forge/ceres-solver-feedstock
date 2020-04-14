@@ -156,4 +156,5 @@ Feedstock Maintainers
 =====================
 
 * [@jschueller](https://github.com/jschueller/)
+* [@seanyen](https://github.com/seanyen/)
 
