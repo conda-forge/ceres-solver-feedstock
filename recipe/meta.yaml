@@ -26,14 +26,14 @@ requirements:
     - libblas
     - libcblas
     - liblapack
-    - suitesparse  # [unix]
+    - suitesparse
     - tbb
     - eigen
 
   run:
     - glog
     - gflags
-    - suitesparse  # [unix]
+    - suitesparse
     - tbb
     - eigen
 
@@ -54,3 +54,4 @@ about:
 extra:
   recipe-maintainers:
     - jschueller
+    - seanyen
