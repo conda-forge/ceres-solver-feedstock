@@ -17,6 +17,6 @@ libcblas:
 liblapack:
 - 3.8.0 *netlib
 suitesparse:
-- '5.1'
+- '5.4'
 vc:
 - '14'
