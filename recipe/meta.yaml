@@ -26,7 +26,7 @@ requirements:
     - libblas
     - libcblas
     - liblapack
-    - suitesparse >=5.4.*
+    - suitesparse
     - tbb
     - eigen
 
