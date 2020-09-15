@@ -24,3 +24,5 @@ liblapack:
 - 3.8.0 *netlib
 suitesparse:
 - '5.6'
+target_platform:
+- linux-64
