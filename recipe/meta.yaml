@@ -18,6 +18,7 @@ requirements:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - make
   host:
     - glog
     - gflags
