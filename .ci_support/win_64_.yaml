@@ -18,5 +18,5 @@ liblapack:
 - 3.8.0 *netlib
 suitesparse:
 - '5.4'
-vc:
-- '14'
+target_platform:
+- win-64
