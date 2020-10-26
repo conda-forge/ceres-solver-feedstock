@@ -15,7 +15,7 @@ libblas:
 libcblas:
 - 3.8 *netlib
 liblapack:
-- 3.8.0 *netlib
+- 3.8 *netlib
 suitesparse:
 - '5.4'
 target_platform:

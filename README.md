@@ -5,11 +5,9 @@ Home: http://ceres-solver.org
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ceres-solver-feedstock/blob/master/LICENSE.txt)
 
 Summary: A large scale non-linear optimization library
-
-
 
 Current build status
 ====================
