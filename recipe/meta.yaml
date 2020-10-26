@@ -1,4 +1,4 @@
-{% set version = "1.14.0" %}
+{% set version = "2.0.0" %}
 
 package:
   name: ceres-solver
@@ -6,10 +6,10 @@ package:
 
 source:
   url: http://ceres-solver.org/ceres-solver-{{ version }}.tar.gz
-  sha256: 4744005fc3b902fed886ea418df70690caa8e2ff6b5a90f3dd88a3d291ef8e8e
+  sha256: 10298a1d75ca884aa0507d1abb0e0f04800a92871cd400d4c361b56a777a7603
 
 build:
-  number: 11
+  number: 0
   run_exports: 
     - {{ pin_subpackage('ceres-solver', max_pin='x.x') }}
 
