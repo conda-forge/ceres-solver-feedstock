@@ -15,7 +15,7 @@ cxx_compiler_version:
 gflags:
 - '2.2'
 glog:
-- 0.4.0
+- '0.5'
 libblas:
 - 3.8 *netlib
 libcblas:
@@ -25,9 +25,11 @@ liblapack:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 suitesparse:
-- '5.6'
+- '5'
 target_platform:
 - osx-64
+tbb:
+- '2020'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
