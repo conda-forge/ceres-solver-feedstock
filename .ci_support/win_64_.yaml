@@ -9,14 +9,16 @@ cxx_compiler:
 gflags:
 - '2.2'
 glog:
-- 0.4.0
+- '0.5'
 libblas:
 - 3.8 *netlib
 libcblas:
 - 3.8 *netlib
 liblapack:
-- 3.8.0 *netlib
+- 3.8 *netlib
 suitesparse:
-- '5.4'
+- '5'
 target_platform:
 - win-64
+tbb:
+- '2020'
