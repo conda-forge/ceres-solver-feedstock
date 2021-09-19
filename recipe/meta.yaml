@@ -7,12 +7,13 @@ package:
 source:
   url: http://ceres-solver.org/ceres-solver-{{ version }}.tar.gz
   sha256: 10298a1d75ca884aa0507d1abb0e0f04800a92871cd400d4c361b56a777a7603
+  patches:
+    - remove-exact-eigen-requirement.patch
 
 build:
-  number: 4
+  number: 5
   run_exports:
     - {{ pin_subpackage('ceres-solver', max_pin='x.x') }}
-    - {{ pin_compatible('eigen', max_pin='x.x.x') }}
 
 requirements:
   build:
