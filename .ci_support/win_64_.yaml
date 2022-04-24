@@ -9,7 +9,7 @@ cxx_compiler:
 gflags:
 - '2.2'
 glog:
-- '0.5'
+- '0.6'
 libblas:
 - 3.8 *netlib
 libcblas:

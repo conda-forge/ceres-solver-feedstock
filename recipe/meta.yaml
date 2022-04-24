@@ -9,7 +9,7 @@ source:
   sha256: f7d74eecde0aed75bfc51ec48c91d01fe16a6bf16bce1987a7073286701e2fc6
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('ceres-solver', max_pin='x.x') }}
     - {{ pin_compatible('eigen', max_pin='x.x.x') }}
