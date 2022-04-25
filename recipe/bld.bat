@@ -1,5 +1,7 @@
 mkdir build_ && cd build_
 
+set CL=/DNOMINMAX=1 %CL%
+
 cmake -G "NMake Makefiles" ^
     -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
