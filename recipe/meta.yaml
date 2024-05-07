@@ -27,14 +27,14 @@ requirements:
     - libblas
     - libcblas
     - liblapack
-    - suitesparse
+    - suitesparse  # [not win]
     - tbb
     - eigen
 
   run:
     - glog
     - gflags
-    - suitesparse
+    - suitesparse  # [not win]
     - tbb
     - eigen
 
