@@ -23,6 +23,8 @@ requirements:
     - make
   host:
     - glog
+    # cmake find_package(LAPACK) needs blas, except on mac
+    - libblas
     - liblapack
     - metis
     - suitesparse

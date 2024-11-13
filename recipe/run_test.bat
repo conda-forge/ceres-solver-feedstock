@@ -1,4 +1,4 @@
-copy examples/helloworld.cc tests/
+copy examples\helloworld.cc tests
 cd tests
 mkdir build_
 cd build_
