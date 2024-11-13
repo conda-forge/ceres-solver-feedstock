@@ -9,7 +9,7 @@ source:
   sha256: 48b2302a7986ece172898477c3bcd6deb8fb5cf19b3327bc49969aad4cede82d
 
 build:
-  number: 4
+  number: 5
   run_exports:
     - {{ pin_subpackage('ceres-solver', max_pin='x.x') }}
     - {{ pin_compatible('eigen', max_pin='x.x.x') }}
@@ -24,19 +24,13 @@ requirements:
   host:
     - glog
     - gflags
-    - libblas
-    - libcblas
     - liblapack
+    - metis
     - suitesparse
-    - tbb
     - eigen
 
   run:
-    - glog
-    - gflags
-    - suitesparse
-    - tbb
-    - eigen
+    - {{ pin_compatible('eigen', max_pin='x.x.x') }}
 
 test:
   commands:
