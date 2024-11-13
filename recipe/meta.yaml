@@ -13,6 +13,8 @@ build:
   run_exports:
     - {{ pin_subpackage('ceres-solver', max_pin='x.x') }}
     - {{ pin_compatible('eigen', max_pin='x.x.x') }}
+  ignore_run_exports_from:
+    - libblas
 
 requirements:
   build:
@@ -23,7 +25,8 @@ requirements:
     - make
   host:
     - glog
-    # cmake find_package(LAPACK) needs blas, except on mac
+    # cmake find_package(LAPACK) needs blas
+    # even though it's not linked
     - libblas
     - liblapack
     - metis
