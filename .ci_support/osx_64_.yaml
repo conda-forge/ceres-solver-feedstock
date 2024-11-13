@@ -18,10 +18,10 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '18'
-gflags:
-- '2.2'
 glog:
 - '0.7'
+libblas:
+- 3.9 *netlib
 liblapack:
 - 3.9 *netlib
 macos_machine:
