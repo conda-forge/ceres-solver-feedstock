@@ -23,7 +23,6 @@ requirements:
     - make
   host:
     - glog
-    - gflags
     - liblapack
     - metis
     - suitesparse
@@ -33,6 +32,15 @@ requirements:
     - {{ pin_compatible('eigen', max_pin='x.x.x') }}
 
 test:
+  requires:
+    - cmake
+    - {{ compiler("c") }}
+    - {{ compiler("cxx") }}
+    - ninja  # [win]
+  files:
+    - tests/
+  source_files:
+    - examples/helloworld.cc
   commands:
     - test -f ${PREFIX}/include/ceres/ceres.h  # [unix]
     - test -f ${PREFIX}/lib/libceres${SHLIB_EXT}  # [unix]
