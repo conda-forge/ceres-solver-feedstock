@@ -12,15 +12,11 @@ gflags:
 - '2.2'
 glog:
 - '0.7'
-libblas:
-- 3.9 *netlib
-libcblas:
-- 3.9 *netlib
 liblapack:
 - 3.9 *netlib
+metis:
+- 5.1.0
 suitesparse:
 - '7'
 target_platform:
 - win-64
-tbb:
-- '2021'
