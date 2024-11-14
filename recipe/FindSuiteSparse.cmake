@@ -11,17 +11,13 @@ set(SuiteSparse_VERSION ${SuiteSparse_config_VERSION})
 
 # look for suitesparse metis link
 # skip? this is always True on conda-forge
-find_package (METIS)
-
 include (CheckSymbolExists)
 include (CMakePushCheckState)
 
-if (TARGET METIS::METIS)
-  cmake_push_check_state (RESET)
-  set (CMAKE_REQUIRED_LIBRARIES SuiteSparse::CHOLMOD METIS::METIS)
-  check_symbol_exists (cholmod_metis cholmod.h SuiteSparse_CHOLMOD_USES_METIS)
-  cmake_pop_check_state ()
-endif()
+cmake_push_check_state (RESET)
+set (CMAKE_REQUIRED_LIBRARIES SuiteSparse::CHOLMOD)
+check_symbol_exists (cholmod_metis cholmod.h SuiteSparse_CHOLMOD_USES_METIS)
+cmake_pop_check_state ()
 
 if (SuiteSparse_CHOLMOD_USES_METIS)
   add_library(SuiteSparse::Partition IMPORTED INTERFACE)
