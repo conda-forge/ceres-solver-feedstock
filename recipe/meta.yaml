@@ -22,7 +22,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    - make
+    - make  # [unix]
   host:
     - glog
     # cmake find_package(LAPACK) needs blas
@@ -41,7 +41,7 @@ test:
     - cmake
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
-    - ninja  # [win]
+    - make  # [unix]
   files:
     - tests/
   source_files:
