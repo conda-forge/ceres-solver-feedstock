@@ -48,13 +48,14 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}  # [(cuda_compiler_version or "None").startswith("12")]
   run:
     - {{ pin_compatible('eigen', max_pin='x.x.x') }}
-    - __cuda >={{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
+    - __cuda >={{ cuda_compiler_version }}      # [cuda_compiler_version != "None"]
 
 test:
   requires:
     - cmake
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
+    - {{ compiler('cuda') }}                    # [cuda_compiler_version != "None"]
     - make  # [unix]
   files:
     - tests/
