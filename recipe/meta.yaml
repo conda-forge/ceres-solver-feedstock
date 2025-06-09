@@ -1,4 +1,9 @@
 {% set version = "2.2.0" %}
+{% set processor = "cpu" if (cuda_compiler_version or "None") == "None" else "gpu" %}
+
+# Prioritize gpu build if cudatoolkit can be installed (through __cuda virtual package)
+{% set build = 6 %}
+{% set build = build + 100 if processor == "gpu" else build %}
 
 package:
   name: ceres-solver
@@ -9,7 +14,9 @@ source:
   sha256: 48b2302a7986ece172898477c3bcd6deb8fb5cf19b3327bc49969aad4cede82d
 
 build:
-  number: 5
+  number: {{ build }}
+  string: {{ processor }}h{{ PKG_HASH }}_{{ build }}
+  skip: true  # [cuda_compiler_version == "11.8"]
   run_exports:
     - {{ pin_subpackage('ceres-solver', max_pin='x.x') }}
     - {{ pin_compatible('eigen', max_pin='x.x.x') }}
@@ -22,6 +29,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}         # [cuda_compiler_version != "None"]
     - make  # [unix]
   host:
     - glog
@@ -32,15 +40,21 @@ requirements:
     - metis
     - suitesparse
     - eigen
-
+    - libcublas-dev                             # [(cuda_compiler_version or "None").startswith("12")]
+    - libcusolver-dev                           # [(cuda_compiler_version or "None").startswith("12")]
+    - libcusparse-dev                           # [(cuda_compiler_version or "None").startswith("12")]
+    - cuda-cudart-dev                           # [(cuda_compiler_version or "None").startswith("12")]
+    - cuda-version {{ cuda_compiler_version }}  # [(cuda_compiler_version or "None").startswith("12")]
   run:
     - {{ pin_compatible('eigen', max_pin='x.x.x') }}
+    - __cuda >={{ cuda_compiler_version }}      # [cuda_compiler_version != "None"]
 
 test:
   requires:
     - cmake
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
+    - {{ compiler('cuda') }}                    # [cuda_compiler_version != "None"]
     - make  # [unix]
   files:
     - tests/
