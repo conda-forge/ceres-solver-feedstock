@@ -1,5 +1,5 @@
 c_compiler:
-- vs2019
+- vs2022
 c_stdlib:
 - vs
 channel_sources:
@@ -7,11 +7,11 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cuda_compiler:
-- None
+- cuda-nvcc
 cuda_compiler_version:
 - None
 cxx_compiler:
-- vs2019
+- vs2022
 glog:
 - '0.7'
 libblas:
@@ -24,6 +24,3 @@ suitesparse:
 - '7'
 target_platform:
 - win-64
-zip_keys:
-- - cuda_compiler
-  - cuda_compiler_version
