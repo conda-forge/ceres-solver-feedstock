@@ -2,7 +2,7 @@
 {% set processor = "cpu" if (cuda_compiler_version or "None") == "None" else "gpu" %}
 
 # Prioritize gpu build if cudatoolkit can be installed (through __cuda virtual package)
-{% set build = 7 %}
+{% set build = 8 %}
 {% set build = build + 100 if processor == "gpu" else build %}
 
 package:
@@ -38,7 +38,7 @@ requirements:
     - libblas
     - liblapack
     - metis
-    - suitesparse
+    #- suitesparse (disable because GPL: https://github.com/ceres-solver/ceres-solver/issues/1026)
     - eigen
     - libcublas-dev                             # [(cuda_compiler_version or "None").startswith("12")]
     - libcusolver-dev                           # [(cuda_compiler_version or "None").startswith("12")]
