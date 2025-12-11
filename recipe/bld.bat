@@ -8,13 +8,18 @@ if NOT "%cuda_compiler_version%"=="None" (
     set CUDA_ENABLED=OFF
 )
 
+if "%dep_license_family%"=="gpl" (
+    set "EXTRA_CMAKE_ARGS=%EXTRA_CMAKE_ARGS% -DSUITESPARSE=ON"
+) else (
+    set "EXTRA_CMAKE_ARGS=%EXTRA_CMAKE_ARGS% -DSUITESPARSE=OfF"
+)
+
 cmake -G "NMake Makefiles" ^
     -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DUSE_CUDA=%CUDA_ENABLED% ^
     -DBLA_VENDOR=Generic ^
-    -DSUITESPARSE=OFF ^
     -DBUILD_SHARED_LIBS=ON ^
     -DBUILD_EXAMPLES=OFF ^
     -DBUILD_TESTING=OFF ^

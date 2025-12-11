@@ -13,12 +13,19 @@ if [[ ! -z "${cuda_compiler_version+x}" && "${cuda_compiler_version}" != "None" 
     EXTRA_CMAKE_ARGS="-DUSE_CUDA=OFF"
 fi
 
+if [[ "${dep_license_family}" == "gpl" ]]; 
+  then
+    EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DSUITESPARSE=ON"
+  else
+    EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DSUITESPARSE=OFF"
+fi
+
 cmake ${CMAKE_ARGS} \
   -DCMAKE_PREFIX_PATH=${PREFIX} \
   -DCMAKE_INSTALL_PREFIX=${PREFIX} \
   -DBLA_VENDOR="Generic" \
   -DACCELERATESPARSE=OFF \
-  -DSUITESPARSE=OFF \
+   \
   -DBUILD_SHARED_LIBS=ON \
   -DBUILD_EXAMPLES=OFF \
   -DBUILD_TESTING=OFF \
