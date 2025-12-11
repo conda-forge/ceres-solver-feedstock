@@ -2,8 +2,17 @@
 {% set processor = "cpu" if (cuda_compiler_version or "None") == "None" else "gpu" %}
 
 # Prioritize gpu build if cudatoolkit can be installed (through __cuda virtual package)
-{% set build = 8 %}
+{% set build = 9 %}
 {% set build = build + 100 if processor == "gpu" else build %}
+
+# ceres by itself is BSD-3-Clause, but it can depend on SuiteSparse (gpl) or an lgpl part of
+# Eigen. For these reason, similarly to the ffmpeg-feedstock, we provide gpl and lgpl
+# variants of the suitesparse package, where in this case gpl and lgpl does refer to the
+# license of some of the dependencies, not the package itself.
+# See https://github.com/ceres-solver/ceres-solver/issues/1026
+# https://github.com/ceres-solver/ceres-solver/commit/aab0193c7b8e7a747855ec6b03332dba19c078c2#diff-e285c1b9901cd202e89d9f37e3249a6fee524a65428895e1a45fd062cc0f9acaR594-R610 
+{% set dep_license_family = dep_license_family | default("gpl") %}
+{% set build = build + 200 if dep_license_family == "gpl" else build %}
 
 package:
   name: ceres-solver
@@ -15,7 +24,7 @@ source:
 
 build:
   number: {{ build }}
-  string: {{ processor }}h{{ PKG_HASH }}_{{ build }}
+  string: {{ processor }}{{ dep_license_family }}h{{ PKG_HASH }}_{{ build }}
   skip: true  # [cuda_compiler_version == "11.8"]
   run_exports:
     - {{ pin_subpackage('ceres-solver', max_pin='x.x') }}
@@ -38,7 +47,7 @@ requirements:
     - libblas
     - liblapack
     - metis
-    #- suitesparse (disable because GPL: https://github.com/ceres-solver/ceres-solver/issues/1026)
+    - suitesparse                               # [dep_license_family == "gpl"]
     - eigen
     - libcublas-dev                             # [(cuda_compiler_version or "None").startswith("12")]
     - libcusolver-dev                           # [(cuda_compiler_version or "None").startswith("12")]
