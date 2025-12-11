@@ -18,6 +18,8 @@ cxx_compiler:
 - gxx
 cxx_compiler_version:
 - '14'
+dep_license_family:
+- gpl
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 glog:
@@ -28,6 +30,8 @@ liblapack:
 - 3.9.* *netlib
 metis:
 - 5.1.0
+suitesparse:
+- '7'
 target_platform:
 - linux-aarch64
 zip_keys:
