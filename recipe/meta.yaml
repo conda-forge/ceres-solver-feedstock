@@ -2,7 +2,7 @@
 {% set processor = "cpu" if (cuda_compiler_version or "None") == "None" else "gpu" %}
 
 # Prioritize gpu build if cudatoolkit can be installed (through __cuda virtual package)
-{% set build = 9 %}
+{% set build = 10 %}
 {% set build = build + 100 if processor == "gpu" else build %}
 
 # ceres by itself is BSD-3-Clause, but it can depend on SuiteSparse (gpl) or an lgpl part of
@@ -49,6 +49,7 @@ requirements:
     - metis
     - suitesparse                               # [dep_license_family == "gpl"]
     - eigen
+    - eigen-abi-devel
     - libcublas-dev                             # [(cuda_compiler_version or "None").startswith("12")]
     - libcusolver-dev                           # [(cuda_compiler_version or "None").startswith("12")]
     - libcusparse-dev                           # [(cuda_compiler_version or "None").startswith("12")]
