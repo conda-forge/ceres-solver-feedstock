@@ -22,6 +22,8 @@ cxx_compiler_version:
 - '19'
 dep_license_family:
 - gpl
+eigen_abi_devel:
+- 3.4.0
 glog:
 - '0.7'
 libblas:
