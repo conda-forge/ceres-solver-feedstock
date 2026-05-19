@@ -22,6 +22,7 @@ cmake %CMAKE_ARGS% -G Ninja -LAH ^
     -DBUILD_EXAMPLES=OFF ^
     -DBUILD_TESTING=OFF ^
     %EXTRA_CMAKE_ARGS% ^
+    -DCMAKE_CUDA_STANDARD=17 ^
     -B build_ .
 if errorlevel 1 exit 1
 
