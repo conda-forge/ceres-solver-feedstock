@@ -29,13 +29,12 @@ build:
 requirements:
   build:
     - cmake
+    - ninja
     - ${{ compiler("c") }}
     - ${{ stdlib("c") }}
     - ${{ compiler("cxx") }}
     - if: cuda == "enabled"
       then: ${{ compiler("cuda") }}
-    - if: unix
-      then: make
   host:
     - glog
     - libblas

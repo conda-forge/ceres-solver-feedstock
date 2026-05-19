@@ -14,9 +14,7 @@ if "%dep_license_family%"=="gpl" (
     set "EXTRA_CMAKE_ARGS=%EXTRA_CMAKE_ARGS% -DSUITESPARSE=OfF"
 )
 
-cmake -G "NMake Makefiles" ^
-    -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
-    -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+cmake %CMAKE_ARGS% -G Ninja -LAH ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DUSE_CUDA=%CUDA_ENABLED% ^
     -DBLA_VENDOR=Generic ^
