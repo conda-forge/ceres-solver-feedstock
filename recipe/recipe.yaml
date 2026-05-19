@@ -11,6 +11,8 @@ source:
   sha256: 48b2302a7986ece172898477c3bcd6deb8fb5cf19b3327bc49969aad4cede82d
   patches:
     - fix-eigen5.patch
+    - 0001-Set-CMAKE_CUDA_ARCHITECTURES-depending-on-CUDAToolki.patch
+    - 0002-Update-CMakeLists.txt-to-support-CUDA-13.patch
 
 build:
   variant:
