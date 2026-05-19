@@ -1,6 +1,6 @@
 context:
   version: "2.2.0"
-  build: 12
+  build: 13
 
 package:
   name: ceres-solver
@@ -59,8 +59,8 @@ requirements:
   run_exports:
     - ${{ pin_subpackage('ceres-solver', upper_bound='x.x') }}
   ignore_run_exports:
-      from_package:
-        - libblas
+    from_package:
+      - libblas
 
 tests:
   - script:
