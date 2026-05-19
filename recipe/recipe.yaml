@@ -1,7 +1,6 @@
 context:
   version: "2.2.0"
-  cuda_version: ${{ env.get("CONDA_OVERRIDE_CUDA", default="None") }}
-  cuda: ${{ "enabled" if cuda_version != "None" else "disabled" }}
+  build: 12
 
 package:
   name: ceres-solver
@@ -17,13 +16,12 @@ build:
   variant:
     use_keys:
       - dep_license_family
-      - ${{ "cuda" if cuda == "enabled" }}
     # Prefer GPU builds when CUDA is available
-    down_prioritize_variant: ${{ 0 if cuda == "enabled" else 1 }}
-  number: ${{ 12 + (200 if dep_license_family == "gpl" else 0) }}
-  string: ${{ "gpu" if cuda == "enabled" else "cpu" }}${{ dep_license_family }}h${{ hash }}_${{ build_number }}
+    down_prioritize_variant: ${{ 0 if cuda_compiler_version != "None" else 1 }}
+  number: ${{ build if dep_license_family == "lgpl" else build + 200 }}
+  string: ${{ "gpu" if cuda_compiler_version != "None" else "cpu" }}${{ dep_license_family }}h${{ hash }}_${{ build_number }}
   skip:
-    - if: cuda_version == "11.8"
+    - if: cuda_compiler_version == "11.8"
       then: true
 
 requirements:
@@ -33,7 +31,7 @@ requirements:
     - ${{ compiler("c") }}
     - ${{ stdlib("c") }}
     - ${{ compiler("cxx") }}
-    - if: cuda == "enabled"
+    - if: cuda_compiler_version != "None"
       then: ${{ compiler("cuda") }}
   host:
     - glog
@@ -44,18 +42,18 @@ requirements:
     - eigen-abi-devel
     - if: dep_license_family == "gpl"
       then: suitesparse
-    - if: cuda == "enabled"
+    - if: cuda_compiler_version != "None"
       then:
-        - cuda-version ==${{ cuda_version }}
+        - cuda-version ${{ cuda_compiler_version }}.*
         - libcublas-dev
         - libcusolver-dev
         - libcusparse-dev
         - cuda-cudart-dev
   run:
     - ${{ pin_compatible("eigen", upper_bound="x.x.x") }}
-    - if: cuda == "enabled"
+    - if: cuda_compiler_version != "None"
       then:
-        - __cuda >=${{ cuda_version }}
+        - __cuda
   run_exports:
     - ${{ pin_subpackage('ceres-solver', upper_bound='x.x') }}
   ignore_run_exports:
@@ -72,7 +70,7 @@ tests:
         - cmake
         - ${{ compiler("c") }}
         - ${{ compiler("cxx") }}
-        - if: cuda == "enabled"
+        - if: cuda_compiler_version != "None"
           then: ${{ compiler("cuda") }}
         - if: unix
           then:
