@@ -1,0 +1,99 @@
+context:
+  version: "2.2.0"
+  build: 12
+
+package:
+  name: ceres-solver
+  version: ${{ version }}
+
+source:
+  url: http://ceres-solver.org/ceres-solver-${{ version }}.tar.gz
+  sha256: 48b2302a7986ece172898477c3bcd6deb8fb5cf19b3327bc49969aad4cede82d
+  patches:
+    - fix-eigen5.patch
+
+build:
+  variant:
+    use_keys:
+      - dep_license_family
+    # Prefer GPU builds when CUDA is available
+    down_prioritize_variant: ${{ 0 if cuda_compiler_version != "None" else 1 }}
+  number: ${{ build if dep_license_family == "lgpl" else build + 200 }}
+  string: ${{ "gpu" if cuda_compiler_version != "None" else "cpu" }}${{ dep_license_family }}h${{ hash }}_${{ build_number }}
+  skip:
+    - if: cuda_compiler_version == "11.8"
+      then: true
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler("cxx") }}
+    - if: cuda_compiler_version != "None"
+      then: ${{ compiler("cuda") }}
+  host:
+    - glog
+    - libblas
+    - liblapack
+    - metis
+    - eigen
+    - eigen-abi-devel
+    - if: dep_license_family == "gpl"
+      then: suitesparse
+    - if: cuda_compiler_version != "None"
+      then:
+        - cuda-version ${{ cuda_compiler_version }}.*
+        - libcublas-dev
+        - libcusolver-dev
+        - libcusparse-dev
+        - cuda-cudart-dev
+  run:
+    - ${{ pin_compatible("eigen", upper_bound="x.x.x") }}
+    - if: cuda_compiler_version != "None"
+      then:
+        - __cuda
+  run_exports:
+    - ${{ pin_subpackage('ceres-solver', upper_bound='x.x') }}
+  ignore_run_exports:
+      from_package:
+        - libblas
+
+tests:
+  - script:
+      - if: unix
+        then:
+          - test -f ${PREFIX}/lib/cmake/Ceres/CeresConfig.cmake
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler("c") }}
+        - ${{ compiler("cxx") }}
+        - if: cuda_compiler_version != "None"
+          then: ${{ compiler("cuda") }}
+        - if: unix
+          then:
+            - make
+    files:
+      recipe:
+        - tests/
+      source:
+        - examples/helloworld.cc
+  - package_contents:
+      include:
+        - ceres/ceres.h
+      lib:
+        - ceres
+
+about:
+  homepage: http://ceres-solver.org
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: A large scale non-linear optimization library
+
+extra:
+  recipe-maintainers:
+    - jschueller
+    - seanyen
+    - hobu
