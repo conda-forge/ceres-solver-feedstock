@@ -1,5 +1,5 @@
 context:
-  version: "2.3.0.a0"
+  version: "2.3.0dev1"
   build: 0
   gh_commit: "fe351d5ab8cbc574f33456376bf5aa90d3162d5d"
 
@@ -9,7 +9,6 @@ package:
 
 source:
   url: https://github.com/ceres-solver/ceres-solver/archive/${{ gh_commit }}.tar.gz
-  # url: http://ceres-solver.org/ceres-solver-${{ version }}.tar.gz
   # sha256: 48b2302a7986ece172898477c3bcd6deb8fb5cf19b3327bc49969aad4cede82d
 
 build:
@@ -37,6 +36,7 @@ requirements:
     - metis
     - eigen
     - eigen-abi-devel
+    - libabseil
     - if: dep_license_family == "gpl"
       then: suitesparse
     - if: cuda_compiler_version != "None"
