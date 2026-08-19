@@ -3,9 +3,9 @@ set -ex
 
 if [[ ! -z "${cuda_compiler_version+x}" && "${cuda_compiler_version}" != "None" ]]
   then
-    EXTRA_CMAKE_ARGS="-DCMAKE_CUDA_ARCHITECTURES=all -DUSE_CUDA=ON"
+    EXTRA_CMAKE_ARGS="-DCMAKE_CUDA_ARCHITECTURES=all -DWITH_CUDA=ON"
   else
-    EXTRA_CMAKE_ARGS="-DUSE_CUDA=OFF"
+    EXTRA_CMAKE_ARGS="-DWITH_CUDA=OFF"
 fi
 
 if [[ "${dep_license_family}" == "gpl" ]]; 
