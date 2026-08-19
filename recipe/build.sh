@@ -11,7 +11,7 @@ fi
 if [[ "${dep_license_family}" == "gpl" ]]; 
   then
     # use our simpler FindSuiteSparse
-    cp -v "${RECIPE_DIR}/FindSuiteSparse.cmake" cmake/
+    # cp -v "${RECIPE_DIR}/FindSuiteSparse.cmake" cmake/
     EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DWITH_SUITESPARSE=ON"
   else
     EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DWITH_SUITESPARSE=OFF"
