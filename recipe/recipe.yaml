@@ -47,7 +47,7 @@ requirements:
         - libcusolver-dev
         - libcusparse-dev
         - cuda-cudart-dev
-        - libcudss
+        - libcudss-dev
   run:
     - ${{ pin_compatible("eigen", upper_bound="x.x.x") }}
     - if: cuda_compiler_version != "None"
