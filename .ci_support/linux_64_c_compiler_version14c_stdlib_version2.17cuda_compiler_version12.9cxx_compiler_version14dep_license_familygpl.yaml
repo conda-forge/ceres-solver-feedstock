@@ -9,7 +9,7 @@ c_stdlib_version:
 channel_sources:
 - conda-forge
 channel_targets:
-- conda-forge ceres_solver_rc
+- conda-forge ceres_solver_dev
 cuda_compiler:
 - cuda-nvcc
 cuda_compiler_version:
@@ -26,6 +26,8 @@ eigen_abi_devel:
 - 5.0.1
 glog:
 - '0.7'
+libabseil:
+- '20260526'
 libblas:
 - 3.9.* *netlib
 liblapack:

@@ -47,6 +47,20 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ceres-solver-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_dep_license_familylgpl" alt="variant">
                 </a>
               </td>
+            </tr><tr>
+              <td>osx_arm64_dep_license_familygpl</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6581&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ceres-solver-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_dep_license_familygpl" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_dep_license_familylgpl</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6581&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ceres-solver-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_dep_license_familylgpl" alt="variant">
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -65,10 +79,10 @@ Current release info
 Installing ceres-solver
 =======================
 
-Installing `ceres-solver` from the `conda-forge/label/ceres_solver_rc` channel can be achieved by adding `conda-forge/label/ceres_solver_rc` to your channels with:
+Installing `ceres-solver` from the `conda-forge/label/ceres_solver_dev` channel can be achieved by adding `conda-forge/label/ceres_solver_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge/label/ceres_solver_rc
+conda config --add channels conda-forge/label/ceres_solver_dev
 conda config --set channel_priority strict
 ```
 
@@ -114,7 +128,7 @@ It is possible to list all of the versions of `ceres-solver` available on your p
 <summary>With conda</summary>
 
 ```
-conda search ceres-solver --channel conda-forge/label/ceres_solver_rc
+conda search ceres-solver --channel conda-forge/label/ceres_solver_dev
 ```
 
 </details>
@@ -123,7 +137,7 @@ conda search ceres-solver --channel conda-forge/label/ceres_solver_rc
 <summary>With mamba</summary>
 
 ```
-mamba search ceres-solver --channel conda-forge/label/ceres_solver_rc
+mamba search ceres-solver --channel conda-forge/label/ceres_solver_dev
 ```
 
 </details>
@@ -132,7 +146,7 @@ mamba search ceres-solver --channel conda-forge/label/ceres_solver_rc
 <summary>With pixi</summary>
 
 ```
-pixi search ceres-solver --channel conda-forge/label/ceres_solver_rc
+pixi search ceres-solver --channel conda-forge/label/ceres_solver_dev
 ```
 
 </details>
@@ -142,13 +156,13 @@ pixi search ceres-solver --channel conda-forge/label/ceres_solver_rc
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search ceres-solver --channel conda-forge/label/ceres_solver_rc
+mamba repoquery search ceres-solver --channel conda-forge/label/ceres_solver_dev
 
 # List packages depending on `ceres-solver`:
-mamba repoquery whoneeds ceres-solver --channel conda-forge/label/ceres_solver_rc
+mamba repoquery whoneeds ceres-solver --channel conda-forge/label/ceres_solver_dev
 
 # List dependencies of `ceres-solver`:
-mamba repoquery depends ceres-solver --channel conda-forge/label/ceres_solver_rc
+mamba repoquery depends ceres-solver --channel conda-forge/label/ceres_solver_dev
 ```
 
 </details>
