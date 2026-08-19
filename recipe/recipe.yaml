@@ -37,6 +37,7 @@ requirements:
     - eigen
     - eigen-abi-devel
     - libabseil
+    - benchmark
     - if: dep_license_family == "gpl"
       then: suitesparse
     - if: cuda_compiler_version != "None"
@@ -46,6 +47,7 @@ requirements:
         - libcusolver-dev
         - libcusparse-dev
         - cuda-cudart-dev
+        - libcudss
   run:
     - ${{ pin_compatible("eigen", upper_bound="x.x.x") }}
     - if: cuda_compiler_version != "None"
