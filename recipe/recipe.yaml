@@ -1,18 +1,16 @@
 context:
-  version: "2.2.0"
-  build: 13
+  version: "2.3.0.a0"
+  build: 0
+  gh_commit: "fe351d5ab8cbc574f33456376bf5aa90d3162d5d"
 
 package:
   name: ceres-solver
   version: ${{ version }}
 
 source:
-  url: http://ceres-solver.org/ceres-solver-${{ version }}.tar.gz
-  sha256: 48b2302a7986ece172898477c3bcd6deb8fb5cf19b3327bc49969aad4cede82d
-  patches:
-    - fix-eigen5.patch
-    - 0001-Set-CMAKE_CUDA_ARCHITECTURES-depending-on-CUDAToolki.patch
-    - 0002-Update-CMakeLists.txt-to-support-CUDA-13.patch
+  url: https://github.com/ceres-solver/ceres-solver/archive/{{ gh_commit }}.tar.gz
+  # url: http://ceres-solver.org/ceres-solver-${{ version }}.tar.gz
+  # sha256: 48b2302a7986ece172898477c3bcd6deb8fb5cf19b3327bc49969aad4cede82d
 
 build:
   variant:
@@ -22,9 +20,6 @@ build:
     down_prioritize_variant: ${{ 0 if cuda_compiler_version != "None" else 1 }}
   number: ${{ build if dep_license_family == "lgpl" else build + 200 }}
   string: ${{ "gpu" if cuda_compiler_version != "None" else "cpu" }}${{ dep_license_family }}h${{ hash }}_${{ build_number }}
-  skip:
-    - if: cuda_compiler_version == "11.8"
-      then: true
 
 requirements:
   build:
