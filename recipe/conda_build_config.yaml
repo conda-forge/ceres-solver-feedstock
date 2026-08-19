@@ -3,4 +3,4 @@ dep_license_family:
   - gpl
 
 channel_targets:
-  - conda-forge ceres_solver_rc
+  - conda-forge ceres_solver_dev
