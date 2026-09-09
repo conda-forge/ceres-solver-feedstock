@@ -96,6 +96,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - Tobias-Fischer
     - jschueller
     - seanyen
     - hobu
