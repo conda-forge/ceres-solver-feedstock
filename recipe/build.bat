@@ -1,5 +1,3 @@
-COPY "%RECIPE_DIR%\FindSuiteSparse.cmake" cmake
-
 set EXTRA_CMAKE_ARGS=""
 if NOT "%cuda_compiler_version%"=="None" (
     set EXTRA_CMAKE_ARGS="-DCMAKE_CUDA_ARCHITECTURES=all"
@@ -9,14 +7,14 @@ if NOT "%cuda_compiler_version%"=="None" (
 )
 
 if "%dep_license_family%"=="gpl" (
-    set "EXTRA_CMAKE_ARGS=%EXTRA_CMAKE_ARGS% -DSUITESPARSE=ON"
+    set "EXTRA_CMAKE_ARGS=%EXTRA_CMAKE_ARGS% -DWITH_SUITESPARSE=ON"
 ) else (
-    set "EXTRA_CMAKE_ARGS=%EXTRA_CMAKE_ARGS% -DSUITESPARSE=OfF"
+    set "EXTRA_CMAKE_ARGS=%EXTRA_CMAKE_ARGS% -DWITH_SUITESPARSE=OfF"
 )
 
 cmake %CMAKE_ARGS% -G Ninja -LAH ^
     -DCMAKE_BUILD_TYPE=Release ^
-    -DUSE_CUDA=%CUDA_ENABLED% ^
+    -DWITH_CUDA=%CUDA_ENABLED% ^
     -DBLA_VENDOR=Generic ^
     -DBUILD_SHARED_LIBS=ON ^
     -DBUILD_EXAMPLES=OFF ^
